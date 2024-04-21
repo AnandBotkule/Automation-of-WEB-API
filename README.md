@@ -4,12 +4,12 @@ following tools and languages used for API Automation : java , rest-assured , te
 reporting of testcase : extent spark report with screenshot
 Framework : cucumber BDD Framework
 Project structure :
-src/test/main
+*src/test/main
   - AbstractComponent
    -AbstractComponent.java
   - pageObject
    -landingloginPage.java
-src/test/java
+*src/test/java
    -cucumber
     -TestNGTestRunner.java
     -Wrongcredentials.feature
@@ -17,11 +17,11 @@ src/test/java
     -Stepdefinition.java
    -TestComponents
     -BaseTest.java
-src/test/resources
+*src/test/resources
     -extent.properties
-target
+*target
   -Reports
     -screenshots
     -spark.html
     -sparkPDF.pdf
-pom.xml
+*pom.xml
