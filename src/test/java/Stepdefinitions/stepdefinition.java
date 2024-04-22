@@ -9,6 +9,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.testng.annotations.AfterMethod;
 
 import PageObject.landingloginPage;
+import Restassured.APIAssured;
 import TestComponents.BaseTest;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.Scenario;
@@ -33,11 +34,39 @@ public class stepdefinition extends BaseTest {
 	    // Write code here that turns the phrase above into concrete actions
 		loginPage.errormessage("Please enter a username and password.");
 	}
+	//API
+	@Given("Get API Url")
+	public void get_api_url() {
+	    APIAssured.GetRestassured();
+	}
+
+	@When("Request body Specification")
+	public void request_body_specification() {
+		APIAssured.requestspecificationparabank();
+	}
+
+	@When("Response body Specification")
+	public void response_body_specification() {
+		APIAssured.responsespecificationcall();
+	}
+
+	@When("Sending the get API call with response {int}")
+	public void sending_the_get_api_call_with_response(int code) {
+		APIAssured.Sendingcall(code);
+	}
+
+	@Then("{int} and {string} message is displayed")
+	public void and_message_is_displayed(int code, String type) {
+		APIAssured.reponsecode(code,type);
+	}
+	//screenshot
 	@AfterStep
 	public void addScreenshot(Scenario scenario) throws IOException {
+		if(driver != null) {
 		  File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		  byte[] fileContent = FileUtils.readFileToByteArray(screenshot);
 		  scenario.attach(fileContent, "image/png", "screenshot");
+		}
 		
 	}
 }
